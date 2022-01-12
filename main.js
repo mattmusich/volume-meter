@@ -24,11 +24,11 @@ SOFTWARE.
 var audioContext = null;
 var meter = null;
 var canvasContext = null;
-var WIDTH=500;
-var HEIGHT=50;
+var WIDTH=1000;
+var HEIGHT=250;
 var rafID = null;
 
-window.onload = function() {
+function myFunction() {
 
     // grab our canvas
 	canvasContext = document.getElementById( "meter" ).getContext("2d");
@@ -90,13 +90,17 @@ function drawLoop( time ) {
     canvasContext.clearRect(0,0,WIDTH,HEIGHT);
 
     // check if we're currently clipping
-    if (meter.checkClipping())
-        canvasContext.fillStyle = "red";
-    else
+    if (meter.checkClipping()){
+        canvasContext.fillStyle = "crimson";
+        document.body.style.backgroundColor = "red";
+    } else {
         canvasContext.fillStyle = "green";
+        document.body.style.backgroundColor = "white";
+    }
 
     // draw a bar based on the current volume
     canvasContext.fillRect(0, 0, meter.volume*WIDTH*1.4, HEIGHT);
+    canvasContext.fillText(meter.volume, 10, 50);
 
     // set up the next visual callback
     rafID = window.requestAnimationFrame( drawLoop );

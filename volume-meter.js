@@ -44,7 +44,7 @@ function createAudioMeter(audioContext,clipLevel,averaging,clipLag) {
 	processor.clipping = false;
 	processor.lastClip = 0;
 	processor.volume = 0;
-	processor.clipLevel = clipLevel || 0.98;
+	processor.clipLevel = clipLevel || document.getElementById("threshold").value;
 	processor.averaging = averaging || 0.95;
 	processor.clipLag = clipLag || 750;
 
